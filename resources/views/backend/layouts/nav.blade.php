@@ -132,5 +132,22 @@
                 <i class="fas fa-th-large"></i>
             </a>
         </li>
+        <li class="nav-item dropdown">
+            <a class="nav-link" data-toggle="dropdown" data-bs-toggle="dropdown" href="#">
+                {{ Auth::user()->name }}
+
+            </a>
+            <div class="dropdown-menu dropdown-menu-end" aria-labelledby="navbarDropdown">
+                <a class="dropdown-item" href="{{ route('logout') }}"
+                   onclick="event.preventDefault();
+                                 document.getElementById('logout-form').submit();">
+                    {{ __('Logout') }}
+                </a>
+
+                <form id="logout-form" action="{{ route('logout') }}" method="POST" class="d-none">
+                    @csrf
+                </form>
+            </div>
+        </li>
     </ul>
 </nav>
