@@ -14,7 +14,8 @@ class PortfolioController extends Controller
      */
     public function index()
     {
-        //
+        $portfolio = Portfolio::all();
+        return view('backend.portfolio.index',compact('portfolio'));
     }
 
     /**
@@ -24,7 +25,8 @@ class PortfolioController extends Controller
      */
     public function create()
     {
-        //
+        $portfolio = Portfolio::all();
+        return view('backend.portfolio.create',compact('portfolio'));
     }
 
     /**
@@ -34,9 +36,55 @@ class PortfolioController extends Controller
      * @return \Illuminate\Http\Response
      */
     public function store(Request $request)
-    {
-        //
+{
+
+    $portfolio = new Portfolio();
+    $validatedData = $request->validate([
+        'category'    => 'required',
+        'image'       => 'nullable|image|mimes:jpeg,png,jpg,gif,svg|max:2048',
+    ]);
+
+    $categoryMap = [
+        'Web Development' => 'Web Development',
+        'Creative Design' => 'Creative Design',
+        'Graphics Design' => 'Graphics Design',
+    ];
+
+    // $enumValue = array_search($validatedData['category'], $categoryMap);
+
+    // dd($enumValue);
+
+
+    if ($request->hasFile('image')) {
+        $request->validate([
+            'image'  => 'image|mimes:jpeg,png,jpg,gif,svg|max:2048',
+        ]);
+
+        // Delete the old image if it exists
+        if ($portfolio->image && file_exists(public_path($portfolio->image))) {
+            unlink(public_path($portfolio->image));
+        }
+
+        $image          = $request->file('image');
+        $imageName      = date('YmdHis') . '.' . $image->getClientOriginalExtension();
+        $image->move(public_path('portfolio/images'), $imageName);
+
+        $portfolio->image    = 'portfolio/images/' . $imageName;
     }
+
+    $portfolio->category = $validatedData['category'];
+
+    $portfolio->save();
+
+    // Optionally, you can redirect or perform additional actions
+
+    $notification = [
+        'message' => 'News updated successfully',
+        'alert-type' => 'success',
+    ];
+
+    return redirect()->route('admin.portfolio.index')->with($notification);
+}
 
     /**
      * Display the specified resource.
@@ -55,9 +103,10 @@ class PortfolioController extends Controller
      * @param  \App\Models\Portfolio  $portfolio
      * @return \Illuminate\Http\Response
      */
-    public function edit(Portfolio $portfolio)
+    public function edit($id)
     {
-        //
+        $portfolio = Portfolio::findOrFail($id);
+        return view('backend.portfolio.create',compact('portfolio'));
     }
 
     /**
@@ -67,9 +116,55 @@ class PortfolioController extends Controller
      * @param  \App\Models\Portfolio  $portfolio
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, Portfolio $portfolio)
+    public function update(Request $request,$id)
     {
-        //
+
+        $portfolio = Portfolio::findOrFail($id);
+        $validatedData = $request->validate([
+            'category'    => 'required',
+            'image'       => 'nullable|image|mimes:jpeg,png,jpg,gif,svg|max:2048',
+        ]);
+
+        $categoryMap = [
+            'Web Development' => 'Web Development',
+            'Creative Design' => 'Creative Design',
+            'Graphics Design' => 'Graphics Design',
+        ];
+
+        // $enumValue = array_search($validatedData['category'], $categoryMap);
+
+        // dd($enumValue);
+
+
+        if ($request->hasFile('image')) {
+            $request->validate([
+                'image'  => 'image|mimes:jpeg,png,jpg,gif,svg|max:2048',
+            ]);
+
+            // Delete the old image if it exists
+            if ($portfolio->image && file_exists(public_path($portfolio->image))) {
+                unlink(public_path($portfolio->image));
+            }
+
+            $image          = $request->file('image');
+            $imageName      = date('YmdHis') . '.' . $image->getClientOriginalExtension();
+            $image->move(public_path('portfolio/images'), $imageName);
+
+            $portfolio->image    = 'portfolio/images/' . $imageName;
+        }
+
+        $portfolio->category = $validatedData['category'];
+
+        $portfolio->save();
+
+        // Optionally, you can redirect or perform additional actions
+
+        $notification = [
+            'message' => 'News updated successfully',
+            'alert-type' => 'success',
+        ];
+
+        return redirect()->route('admin.portfolio.index')->with($notification);
     }
 
     /**

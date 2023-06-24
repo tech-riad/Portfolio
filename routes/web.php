@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\PortfolioController;
 use App\Http\Controllers\SectionController;
 use App\Http\Controllers\ServiceSectionController;
 use Illuminate\Support\Facades\Auth;
@@ -47,6 +48,17 @@ Route::group(['as'=>'admin.','prefix'=>'admin'],function(){
             Route::any('/edit/{id}',[ServiceSectionController::class,'edit'])->name('edit');
             Route::put('/update/{id}',[ServiceSectionController::class,'update'])->name('update');
             Route::any('/destroy/{id}',[ServiceSectionController::class,'destroy'])->name('destroy');
+
+
+    });
+    Route::group(['as'=>'portfolio.','prefix'=>'portfolio'],function(){
+
+            Route::get('/',[PortfolioController::class,'index'])->name('index');
+            Route::get('/create',[PortfolioController::class,'create'])->name('create');
+            Route::post('/store',[PortfolioController::class,'store'])->name('store');
+            Route::any('/edit/{id}',[PortfolioController::class,'edit'])->name('edit');
+            Route::put('/update/{id}',[PortfolioController::class,'update'])->name('update');
+            Route::any('/destroy/{id}',[PortfolioController::class,'destroy'])->name('destroy');
 
 
     });

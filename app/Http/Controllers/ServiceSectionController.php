@@ -78,5 +78,14 @@ class ServiceSectionController extends Controller
 
     }
 
+    public function destroy($id)
+    {
+        $services = ServiceSection::find($id);
+
+        $services->delete();
+
+        return redirect()->back();
+    }
+
 
 }

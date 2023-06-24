@@ -86,15 +86,15 @@
                     </a>
                 </li>
                 <li class="nav-item">
-                    <a href="{{url('/admin/service')}}" class="nav-link">
+                    <a href="{{route('admin.service.index')}}" class="nav-link">
                         <i class="fas fa-list nav-icon"></i>
                         <p>Service</p>
                     </a>
                 </li>
                 <li class="nav-item">
-                    <a href="{{url('/admin/subcategory')}}" class="nav-link">
+                    <a href="{{route('admin.portfolio.index')}}" class="nav-link">
                         <i class="fas fa-list nav-icon"></i>
-                        <p>Sub Category</p>
+                        <p>Portfolio</p>
                     </a>
                 </li>
                 <li class="nav-item">
