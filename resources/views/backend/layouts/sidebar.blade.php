@@ -53,12 +53,12 @@
                 </li>
 
                 </li>
-                <li class="nav-item">
+                {{-- <li class="nav-item">
                     <a href="{{url('/admin/menu')}}" class="nav-link">
                         <i class="far fa fa-table nav-icon"></i>
                         <p>Menu Table</p>
                     </a>
-                </li>
+                </li> --}}
                 <li class="nav-header">Main</li>
                 {{-- <li class="nav-item">
                     <a href="#" class="nav-link">
@@ -98,9 +98,9 @@
                     </a>
                 </li>
                 <li class="nav-item">
-                    <a href="{{url('/admin/tag')}}" class="nav-link">
-                        <i class="fas fa-list nav-icon"></i>
-                        <p>Tag</p>
+                    <a href="{{route('admin.message.index')}}" class="nav-link">
+                        <i class="far fa-envelope-open nav-icon"></i>
+                        <p>Message</p>
                     </a>
                 </li>
 
@@ -124,13 +124,8 @@
                         </li>
                     </ul>
                 </li> --}}
-                <li class="nav-item">
-                    <a href="{{url('/admin/news')}}" class="nav-link">
-                        <i class=" fas fa-newspaper nav-icon"></i>
-                        <p>news</p>
-                    </a>
-                </li>
-                <li class="nav-item">
+
+                {{-- <li class="nav-item">
                     <a href="{{url('/admin/generalsetting')}}" class="nav-link">
                         <i class="nav-icon fas fa-cog"></i>
                         <p>
@@ -139,7 +134,7 @@
                         </p>
                     </a>
 
-                </li>
+                </li> --}}
             </ul>
         </nav>
         <!-- /.sidebar-menu -->

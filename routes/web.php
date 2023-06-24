@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\ContactUsController;
 use App\Http\Controllers\PortfolioController;
 use App\Http\Controllers\SectionController;
 use App\Http\Controllers\ServiceSectionController;
@@ -59,6 +60,14 @@ Route::group(['as'=>'admin.','prefix'=>'admin'],function(){
             Route::any('/edit/{id}',[PortfolioController::class,'edit'])->name('edit');
             Route::put('/update/{id}',[PortfolioController::class,'update'])->name('update');
             Route::any('/destroy/{id}',[PortfolioController::class,'destroy'])->name('destroy');
+
+
+    });
+    Route::group(['as'=>'message.','prefix'=>'message'],function(){
+
+            Route::get('/',[ContactUsController::class,'index'])->name('index');
+            Route::put('/update',[ContactUsController::class,'update'])->name('update');
+            Route::any('/destroy/{id}',[ContactUsController::class,'destroy'])->name('destroy');
 
 
     });

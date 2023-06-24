@@ -79,7 +79,7 @@ class PortfolioController extends Controller
     // Optionally, you can redirect or perform additional actions
 
     $notification = [
-        'message' => 'News updated successfully',
+        'message' => 'Portfolio Created Successfully',
         'alert-type' => 'success',
     ];
 
@@ -160,7 +160,7 @@ class PortfolioController extends Controller
         // Optionally, you can redirect or perform additional actions
 
         $notification = [
-            'message' => 'News updated successfully',
+            'message' => 'portfolio updated successfully',
             'alert-type' => 'success',
         ];
 
@@ -173,8 +173,23 @@ class PortfolioController extends Controller
      * @param  \App\Models\Portfolio  $portfolio
      * @return \Illuminate\Http\Response
      */
-    public function destroy(Portfolio $portfolio)
+    public function destroy($id)
     {
-        //
+        $portfolio = Portfolio::findOrFail($id);
+
+    // Delete the image if it exists
+    if ($portfolio->image && file_exists(public_path($portfolio->image))) {
+        unlink(public_path($portfolio->image));
+    }
+
+    $portfolio->delete();
+
+    $notification = [
+        'message'    => 'Deleted successfully',
+        'alert-type' => 'success',
+    ];
+
+    return redirect()->route('admin.portfolio.index')->with($notification);
+
     }
 }
