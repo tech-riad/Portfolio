@@ -23,11 +23,15 @@
                                 <div class="mb-3">
                                     <label for="category" class="form-label">Category</label>
 
-                                    <select name="category" id="category" class="form-control" required>
+                                    <select name="category_id" id="category" class="form-control">
                                         <option value="" selected disabled>select a Category</option>
-                                        <option value="Web Development" {{@$portfolio->category == "Web Development" ? 'selected':''}}>Web Development</option>
-                                        <option value="Creative Design" {{@$portfolio->category == "Creative Design" ? 'selected':''}}>Creative Design</option>
-                                        <option value="Graphics Design" {{@$portfolio->category == "Graphics Design" ? 'selected':''}}>Graphics Design</option>
+
+                                        @foreach ($categories as $cat)
+                                        <option value="{{$cat->id}}" @if ($cat->id == @$portfolio->category) selected
+
+                                            @endif>{{$cat->name}}</option>
+                                        @endforeach
+
                                     </select>
 
                                     @if($errors->has('category'))

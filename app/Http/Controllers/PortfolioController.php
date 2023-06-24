@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Models\Portfolio;
+use App\Models\PortfolioCategory;
 use Illuminate\Http\Request;
 
 class PortfolioController extends Controller
@@ -15,6 +16,8 @@ class PortfolioController extends Controller
     public function index()
     {
         $portfolio = Portfolio::all();
+
+        // dd($portfolio->toArray());
         return view('backend.portfolio.index',compact('portfolio'));
     }
 
@@ -25,8 +28,10 @@ class PortfolioController extends Controller
      */
     public function create()
     {
-        $portfolio = Portfolio::all();
-        return view('backend.portfolio.create',compact('portfolio'));
+        // $portfolio = Portfolio::all();
+        $categories = PortfolioCategory::all();
+
+        return view('backend.portfolio.create',compact('categories'));
     }
 
     /**
@@ -39,17 +44,11 @@ class PortfolioController extends Controller
 {
 
     $portfolio = new Portfolio();
-    $validatedData = $request->validate([
-        'category'    => 'required',
+
+    $request->validate([
+        'category_id'    => 'required',
         'image'       => 'nullable|image|mimes:jpeg,png,jpg,gif,svg|max:2048',
     ]);
-
-    $categoryMap = [
-        'Web Development' => 'Web Development',
-        'Creative Design' => 'Creative Design',
-        'Graphics Design' => 'Graphics Design',
-    ];
-
     // $enumValue = array_search($validatedData['category'], $categoryMap);
 
     // dd($enumValue);
@@ -72,7 +71,7 @@ class PortfolioController extends Controller
         $portfolio->image    = 'portfolio/images/' . $imageName;
     }
 
-    $portfolio->category = $validatedData['category'];
+    $portfolio->category_id = $request->category_id;
 
     $portfolio->save();
 
@@ -105,8 +104,9 @@ class PortfolioController extends Controller
      */
     public function edit($id)
     {
+        $categories  = PortfolioCategory::all();
         $portfolio = Portfolio::findOrFail($id);
-        return view('backend.portfolio.create',compact('portfolio'));
+        return view('backend.portfolio.create',compact('portfolio','categories'));
     }
 
     /**
@@ -121,7 +121,7 @@ class PortfolioController extends Controller
 
         $portfolio = Portfolio::findOrFail($id);
         $validatedData = $request->validate([
-            'category'    => 'required',
+            'category_id'    => 'required',
             'image'       => 'nullable|image|mimes:jpeg,png,jpg,gif,svg|max:2048',
         ]);
 
@@ -153,7 +153,7 @@ class PortfolioController extends Controller
             $portfolio->image    = 'portfolio/images/' . $imageName;
         }
 
-        $portfolio->category = $validatedData['category'];
+        $portfolio->category_id = $validatedData['category_id'];
 
         $portfolio->save();
 

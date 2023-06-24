@@ -7,12 +7,12 @@
         <div class="container-fluid">
             <div class="row mb-2">
                 <div class="col-sm-6">
-                    <h1>Portfolio</h1>
+                    <h1>Category</h1>
                 </div>
                 <div class="col-sm-6">
                     <ol class="breadcrumb float-sm-right">
                         <li class="breadcrumb-item"><a href="{{route('admin.dashboard')}}">Home</a></li>
-                        <li class="breadcrumb-item active">Portfolio</li>
+                        <li class="breadcrumb-item active">Category</li>
                     </ol>
                 </div>
             </div>
@@ -29,9 +29,9 @@
 
                     <div class="card">
                         <div class="card-header ">
-                            <h3 class="card-title float-left">Portfolio</h3>
+                            <h3 class="card-title float-left">Category</h3>
                             <div class="card-action float-right">
-                                <a href="{{route('admin.portfolio.create')}}" class="btn btn-primary mr-2"><i class="fa fa-plus"></i> Add Work Sample</a>
+                                <a href="{{route('admin.portfoliocategory.create')}}" class="btn btn-primary mr-2"><i class="fa fa-plus"></i> Add Category</a>
                             </div>
                         </div>
                         <!-- /.card-header -->
@@ -39,29 +39,19 @@
                             <table id="example1" class="table table-bordered table-striped">
                                 <thead>
                                     <tr>
-                                        <th>Category</th>
-                                        <th>Image</th>
+                                        <th>Name</th>
                                         <th>Action</th>
                                     </tr>
                                 </thead>
                                 <tbody>
 
-                                    @foreach ($portfolio as $s)
+                                    @foreach ($categories as $s)
 
                                     <tr>
-                                        <td>{{@$s->portcategory->name}}</td>
+                                        <td>{{@$s->name}}</td>
                                         <td>
-                                            @if($s->image)
-                                            <img src="{{ asset($s->image) }}" alt="Image" width="50" height="50">
-                                        @else
-                                            No Image
-                                        @endif
-                                        </td>
-
-                                        <td>{!! Str::limit(@$s->description,110) !!}</td>
-                                        <td>
-                                            <a href="{{route('admin.portfolio.edit',$s->id)}}" class="btn btn-success">Edit</a>
-                                            <a href="{{route('admin.portfolio.destroy',$s->id)}}" class="btn btn-danger deleteBtn">Delete</a>
+                                            <a href="{{route('admin.portfoliocategory.edit',$s->id)}}" class="btn btn-success">Edit</a>
+                                            <a href="{{route('admin.portfoliocategory.destroy',$s->id)}}" class="btn btn-danger deleteBtn">Delete</a>
                                         </td>
                                     </tr>
                                     @endforeach
@@ -70,8 +60,7 @@
                                 </tbody>
                                 <tfoot>
                                     <tr>
-                                        <th>Category</th>
-                                        <th>Image</th>
+                                        <th>Name</th>
                                         <th>Action</th>
                                     </tr>
                                 </tfoot>
@@ -91,4 +80,3 @@
 </div>
 
 @endsection
-

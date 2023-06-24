@@ -1,6 +1,7 @@
 <?php
 
 use App\Http\Controllers\ContactUsController;
+use App\Http\Controllers\PortfolioCategoryController;
 use App\Http\Controllers\PortfolioController;
 use App\Http\Controllers\SectionController;
 use App\Http\Controllers\ServiceSectionController;
@@ -18,9 +19,7 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
-Route::get('/', function () {
-    return view('frontend.index');
-});
+
 
 Auth::routes();
 
@@ -71,6 +70,18 @@ Route::group(['as'=>'admin.','prefix'=>'admin'],function(){
 
 
     });
+
+    Route::group(['as'=>'portfoliocategory.','prefix'=>'portfoliocategory'],function(){
+
+        Route::get('/',[PortfolioCategoryController::class,'index'])->name('index');
+        Route::get('/create',[PortfolioCategoryController::class,'create'])->name('create');
+        Route::post('/store',[PortfolioCategoryController::class,'store'])->name('store');
+        Route::any('/edit/{id}',[PortfolioCategoryController::class,'edit'])->name('edit');
+        Route::put('/update/{id}',[PortfolioCategoryController::class,'update'])->name('update');
+        Route::any('/destroy/{id}',[PortfolioCategoryController::class,'destroy'])->name('destroy');
+
+
+});
 
 
 

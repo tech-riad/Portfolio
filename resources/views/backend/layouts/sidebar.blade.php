@@ -103,6 +103,12 @@
                         <p>Message</p>
                     </a>
                 </li>
+                <li class="nav-item">
+                    <a href="{{route('admin.portfoliocategory.index')}}" class="nav-link">
+                        <i class="far fa-envelope-open nav-icon"></i>
+                        <p>Portfolio Category</p>
+                    </a>
+                </li>
 
 
 

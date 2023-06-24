@@ -49,8 +49,8 @@
 <div id="services" class="section lb">
     <div class="container">
         <div class="section-title text-center">
-            <h3>Services</h3>
-            <p>Quisque eget nisl id nulla sagittis auctor quis id. Aliquam quis vehicula enim, non aliquam risus.</p>
+            <h3>{{@$servicessection->section_header}}</h3>
+            <p>{{@$servicessection->section_message}}</p>
         </div><!-- end title -->
 
         <div class="row">
@@ -115,15 +115,15 @@
 <div id="portfolio" class="section lb">
     <div class="container">
         <div class="section-title text-center">
-            <h3>Portfolio</h3>
-            <p>Quisque eget nisl id nulla sagittis auctor quis id. Aliquam quis vehicula enim, non aliquam risus.</p>
+            <h3>{{@$portfoliosection->section_header}}</h3>
+            <p>{{@$portfoliosection->section_message}}</p>
         </div><!-- end title -->
 
         <div class="gallery-menu row">
             <div class="col-md-12">
                 <div class="button-group filter-button-group text-center">
                     <button class="active" data-filter="*">All</button>
-                    <button data-filter=".gal_a">Web Development</button>
+                    <button data-filter=".">Web Development</button>
                     <button data-filter=".gal_b">Creative Design</button>
                     <button data-filter=".gal_c">Graphic Design</button>
                 </div>
@@ -131,23 +131,17 @@
         </div>
 
         <div class="gallery-list row">
-            <div class="col-md-4 col-sm-6 gallery-grid gal_a gal_b">
+            @foreach ($servicimage as $item)
+            <div class="col-md-4 col-sm-6 gallery-grid  gal_b">
                 <div class="gallery-single fix">
-                    <img src="{{asset('frontend/uploads/gallery_img-01.jpg')}}" class="img-fluid" alt="Image">
+                    <img src="{{asset($item->image)}}" class="img-fluid" alt="Image">
                     <div class="img-overlay">
-                        <a href="{{asset('frontend/uploads/gallery_img-01.jpg')}}" data-rel="prettyPhoto[gal]" class="hoverbutton global-radius"><i class="fa fa-picture-o"></i></a>
+                        <a href="{{asset($item->image)}}" data-rel="prettyPhoto[gal]" class="hoverbutton global-radius"><i class="fa fa-picture-o"></i></a>
                     </div>
                 </div>
             </div>
 
-            <div class="col-md-4 col-sm-6 gallery-grid gal_c gal_b">
-                <div class="gallery-single fix">
-                    <img src="{{asset('frontend/uploads/gallery_img-02.jpg')}}" class="img-fluid" alt="Image">
-                    <div class="img-overlay">
-                        <a href="{{asset('frontend/uploads/gallery_img-02.jpg')}}" data-rel="prettyPhoto[gal]" class="hoverbutton global-radius"><i class="fa fa-picture-o"></i></a>
-                    </div>
-                </div>
-            </div>
+            @endforeach
         </div>
         </div>
     </div>
@@ -406,8 +400,8 @@
 <div id="contact" class="section db">
     <div class="container">
         <div class="section-title text-center">
-            <h3>Contact</h3>
-            <p>Quisque eget nisl id nulla sagittis auctor quis id. Aliquam quis vehicula enim, non aliquam risus.</p>
+            <h3>{{@$contactsection->section_header}}</h3>
+            <p>{{@$contactsection->section_message}}</p>
         </div><!-- end title -->
 
         <div class="row">
