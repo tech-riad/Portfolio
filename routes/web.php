@@ -1,5 +1,7 @@
 <?php
 
+use App\Http\Controllers\SectionController;
+use App\Http\Controllers\ServiceSectionController;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Route;
 
@@ -21,3 +23,37 @@ Route::get('/', function () {
 Auth::routes();
 
 Route::get('/admin/dashboard', [App\Http\Controllers\HomeController::class, 'index'])->name('admin.dashboard');
+
+
+
+Route::group(['as'=>'admin.','prefix'=>'admin'],function(){
+
+    Route::group(['as'=>'section.','prefix'=>'section'],function(){
+
+            Route::get('/',[SectionController::class,'index'])->name('index');
+            Route::get('/create',[SectionController::class,'create'])->name('create');
+            Route::post('/store',[SectionController::class,'store'])->name('store');
+            Route::any('/edit/{id}',[SectionController::class,'edit'])->name('edit');
+            Route::put('/update/{id}',[SectionController::class,'update'])->name('update');
+            // Route::any('/destroy/{id}',[SectionController::class,'destroy'])->name('destroy');
+
+
+    });
+    Route::group(['as'=>'service.','prefix'=>'service'],function(){
+
+            Route::get('/',[ServiceSectionController::class,'index'])->name('index');
+            Route::get('/create',[ServiceSectionController::class,'create'])->name('create');
+            Route::post('/store',[ServiceSectionController::class,'store'])->name('store');
+            Route::any('/edit/{id}',[ServiceSectionController::class,'edit'])->name('edit');
+            Route::put('/update/{id}',[ServiceSectionController::class,'update'])->name('update');
+            Route::any('/destroy/{id}',[ServiceSectionController::class,'destroy'])->name('destroy');
+
+
+    });
+
+
+
+});
+
+
+require (base_path('routes/website.php'));
