@@ -131,7 +131,7 @@
                     </ul>
                 </li> --}}
 
-                {{-- <li class="nav-item">
+                <li class="nav-item">
                     <a href="{{url('/admin/generalsetting')}}" class="nav-link">
                         <i class="nav-icon fas fa-cog"></i>
                         <p>
@@ -140,7 +140,7 @@
                         </p>
                     </a>
 
-                </li> --}}
+                </li>
             </ul>
         </nav>
         <!-- /.sidebar-menu -->

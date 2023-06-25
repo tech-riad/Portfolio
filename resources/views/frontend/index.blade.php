@@ -54,60 +54,20 @@
         </div><!-- end title -->
 
         <div class="row">
+
+            @foreach ($services as $item)
             <div class="col-md-4">
                 <div class="services-inner-box">
                     <div class="ser-icon">
-                        <i class="flaticon-seo"></i>
+                        <i class="{{$item->icon_tag}}"></i>
                     </div>
-                    <h2>Web Development</h2>
-                    <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.</p>
+                    <h2>{{$item->name}}</h2>
+                    <p>{!! Str::limit($item->description,120) !!}</p>
                 </div>
             </div><!-- end col -->
-            <div class="col-md-4">
-                <div class="services-inner-box">
-                    <div class="ser-icon">
-                        <i class="flaticon-development"></i>
-                    </div>
-                    <h2>Responsive Design</h2>
-                    <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.</p>
-                </div>
-            </div><!-- end col -->
-            <div class="col-md-4">
-                <div class="services-inner-box">
-                    <div class="ser-icon">
-                        <i class="flaticon-process"></i>
-                    </div>
-                    <h2>Creative Design</h2>
-                    <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.</p>
-                </div>
-            </div><!-- end col -->
-            <div class="col-md-4">
-                <div class="services-inner-box">
-                    <div class="ser-icon">
-                        <i class="flaticon-discuss-issue"></i>
-                    </div>
-                    <h2>Support</h2>
-                    <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.</p>
-                </div>
-            </div><!-- end col -->
-            <div class="col-md-4">
-                <div class="services-inner-box">
-                    <div class="ser-icon">
-                        <i class="flaticon-idea"></i>
-                    </div>
-                    <h2>Web Idea</h2>
-                    <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.</p>
-                </div>
-            </div><!-- end col -->
-            <div class="col-md-4">
-                <div class="services-inner-box">
-                    <div class="ser-icon">
-                        <i class="flaticon-idea-1"></i>
-                    </div>
-                    <h2>Graphic Design</h2>
-                    <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.</p>
-                </div>
-            </div><!-- end col -->
+
+            @endforeach
+
         </div><!-- end row -->
     </div><!-- end container -->
 </div><!-- end section -->
@@ -123,24 +83,25 @@
             <div class="col-md-12">
                 <div class="button-group filter-button-group text-center">
                     <button class="active" data-filter="*">All</button>
-                    <button data-filter=".">Web Development</button>
-                    <button data-filter=".gal_b">Creative Design</button>
-                    <button data-filter=".gal_c">Graphic Design</button>
+
+                    @foreach ($categories as $category)
+                        <button data-filter=".gal_{{ @$category->id }}">{{ @$category->name }}</button>
+                    @endforeach
+
                 </div>
             </div>
         </div>
 
         <div class="gallery-list row">
             @foreach ($servicimage as $item)
-            <div class="col-md-4 col-sm-6 gallery-grid  gal_b">
-                <div class="gallery-single fix">
-                    <img src="{{asset($item->image)}}" class="img-fluid" alt="Image">
-                    <div class="img-overlay">
-                        <a href="{{asset($item->image)}}" data-rel="prettyPhoto[gal]" class="hoverbutton global-radius"><i class="fa fa-picture-o"></i></a>
+                <div class="col-md-4 col-sm-6 gallery-grid gal_{{ @$item->category_id }}">
+                    <div class="gallery-single fix">
+                        <img src="{{ asset(@$item->image) }}" class="img-fluid" alt="Image">
+                        <div class="img-overlay">
+                            <a href="{{ asset(@$item->image) }}" data-rel="prettyPhoto[gal]" class="hoverbutton global-radius"><i class="fa fa-picture-o"></i></a>
+                        </div>
                     </div>
                 </div>
-            </div>
-
             @endforeach
         </div>
         </div>

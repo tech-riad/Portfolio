@@ -49,7 +49,7 @@
                                     @foreach ($portfolio as $s)
 
                                     <tr>
-                                        <td>{{@$s->portcategory->name}}</td>
+                                        <td>{{$s->portfolioCategory->name}}</td>
                                         <td>
                                             @if($s->image)
                                             <img src="{{ asset($s->image) }}" alt="Image" width="50" height="50">

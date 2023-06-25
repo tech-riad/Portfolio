@@ -11,8 +11,14 @@ class Portfolio extends Model
 
     protected $guarded = ['id'];
 
-    public function portcategory()
-                {
-                    return $this->belongsTo(PortfolioCategory::class, 'category_id' ,' id');
-                }
+    public function portfolioCategory()
+            {
+                return $this->belongsTo(PortfolioCategory::class,'category_id');
+            }
+
+
+    public function portfolios()
+            {
+                return $this->hasMany(Portfolio::class, 'category_id');
+            }
 }

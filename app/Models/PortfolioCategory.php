@@ -10,5 +10,10 @@ class PortfolioCategory extends Model
     use HasFactory;
     protected $guarded = ['id'];
 
-    
+    public function portfolios()
+{
+    return $this->hasMany(Portfolio::class, 'category_id');
+}
+
+
 }
