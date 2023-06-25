@@ -132,7 +132,7 @@
                 </li> --}}
 
                 <li class="nav-item">
-                    <a href="{{url('/admin/generalsetting')}}" class="nav-link">
+                    <a href="{{route('admin.setting.edit')}}" class="nav-link">
                         <i class="nav-icon fas fa-cog"></i>
                         <p>
                             Setting

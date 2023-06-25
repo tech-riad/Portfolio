@@ -6,6 +6,7 @@ use App\Models\Portfolio;
 use App\Models\PortfolioCategory;
 use App\Models\Section;
 use App\Models\ServiceSection;
+use App\Models\Setting;
 use Illuminate\Http\Request;
 
 class WebsiteController extends Controller
@@ -24,13 +25,18 @@ class WebsiteController extends Controller
 
         $services   = ServiceSection::all();
 
+        $settingdata = Setting::first();
+
+        $categoriesview = PortfolioCategory::all();
+
+
 
 
 
 
 
         return view('frontend.index',compact('servicessection','portfoliosection','servicimage',
-                                            'categories','services'));
+                                            'categories','services','settingdata','categoriesview'));
 
 
     }

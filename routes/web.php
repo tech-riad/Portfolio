@@ -5,6 +5,7 @@ use App\Http\Controllers\PortfolioCategoryController;
 use App\Http\Controllers\PortfolioController;
 use App\Http\Controllers\SectionController;
 use App\Http\Controllers\ServiceSectionController;
+use App\Http\Controllers\SettingController;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Route;
 
@@ -82,6 +83,12 @@ Route::group(['as'=>'admin.','prefix'=>'admin'],function(){
 
 
 });
+
+        Route::group(['as'=>'setting.','prefix'=>'setting'],function(){
+            Route::get('/',[SettingController::class,'edit'])->name('edit');
+            Route::put('/update/{id}',[SettingController::class,'update'])->name('update');
+
+        });
 
 
 

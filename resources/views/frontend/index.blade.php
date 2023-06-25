@@ -2,16 +2,17 @@
 
 @section('content')
 
-<section id="home" class="main-banner parallaxie" style="background: url('{{asset('frontend/uploads/banner-01.jpg')}}')">
+<section id="home" class="main-banner parallaxie" style="background: url('{{asset(@$settingdata->slider_image)}}')">
     <div class="heading">
-        <h1>Welcome to OnNext</h1>
+        <h1>Welcome to {{@$settingdata->name}}</h1>
         <h3 class="cd-headline clip is-full-width">
             <span>Lorem Ipsum Dolor Sit Amet </span>
             <span class="cd-words-wrapper">
-                <b class="is-visible">Web Developer</b>
-                <b>Web Design</b>
-                <b>Creative Design</b>
-                <b>Graphic Design</b>
+
+               
+                @foreach ($categoriesview as $key => $cat)
+                    <b class="{{ $key == 0 ? 'is-visible' : '' }}">{{ $cat->name }}</b>
+                @endforeach
             </span>
             <div class="btn-ber">
                 <a class="get_btn hvr-bounce-to-top" href="#">Get started</a>
@@ -29,9 +30,11 @@
         <div class="row">
             <div class="col-md-6">
                 <div class="message-box">
-                    <h2>Welcome to OnNext</h2>
-                    <p> Integer rutrum ligula eu dignissim laoreet. Pellentesque venenatis nibh sed tellus faucibus bibendum. Sed fermentum est vitae rhoncus molestie. Cum sociis natoque penatibus et magnis dis parturient montes, nascetur ridiculus mus. Sed vitae rutrum neque. Ut id erat sit amet libero bibendum aliquam. Donec ac egestas libero, eu bibendum risus. Phasellus et congue justo. </p>
-                    <p>Sed vitae rutrum neque. Ut id erat sit amet libero bibendum aliquam. Donec ac egestas libero, eu bibendum risus. Phasellus et congue justo.</p>
+                    <h2>Welcome to {{@$settingdata->name}}</h2>
+                    <p>
+                        {!! @$settingdata->about_description !!}
+                    </p>
+
 
                     <a href="#" class="sim-btn hvr-bounce-to-top"><span>Contact Us</span></a>
                 </div><!-- end messagebox -->
@@ -39,7 +42,7 @@
 
             <div class="col-md-6">
                 <div class="right-box-pro wow fadeIn">
-                    <img src="uploads/about_04.jpg" alt="" class="img-fluid img-rounded">
+                    <img src="{{asset(@$settingdata->about_image)}}" alt="" class="img-fluid img-rounded">
                 </div><!-- end media -->
             </div><!-- end col -->
         </div><!-- end row -->
