@@ -17,7 +17,7 @@ class WebsiteController extends Controller
         $portfoliosection  = Section::where('id', 2)->first();
         $contactsection    = Section::where('id', 3)->first();
 
-        $servicimage       = Portfolio::all();
+        $servicimage = Portfolio::latest()->take(6)->get();
 
 
         $categories = PortfolioCategory::with('portfolios')->get();

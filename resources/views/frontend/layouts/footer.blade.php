@@ -1,7 +1,7 @@
 <div class="copyrights">
     <div class="container">
         <div class="footer-distributed">
-            <a href="#"><img src="{{asset('frontend/images/logo.png')}}" alt="" /></a>
+            <a href="#"><img src="{{asset(@$settingdata->logo)}}" alt="" /></a>
             <div class="footer-center">
                 <p class="footer-links">
                     <a href="#">Home</a>

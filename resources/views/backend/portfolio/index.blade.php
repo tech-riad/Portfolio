@@ -57,8 +57,6 @@
                                             No Image
                                         @endif
                                         </td>
-
-                                        <td>{!! Str::limit(@$s->description,110) !!}</td>
                                         <td>
                                             <a href="{{route('admin.portfolio.edit',$s->id)}}" class="btn btn-success">Edit</a>
                                             <a href="{{route('admin.portfolio.destroy',$s->id)}}" class="btn btn-danger deleteBtn">Delete</a>
